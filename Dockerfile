@@ -1,23 +1,25 @@
-# === Build stage ===
+# 🏗 Build stage
 FROM python:3.11-slim AS build
 
 WORKDIR /app
+
+# Копіюємо requirements і встановлюємо залежності
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install --prefix=/install -r requirements.txt
+
+# Копіюємо решту проєкту
 COPY . .
 
-# === Final stage ===
+# 🚀 Run stage (фінальний)
 FROM python:3.11-slim
 
 WORKDIR /app
 
-# Копіюємо requirements.txt і встановлюємо залежності
-COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Копіюємо встановлені залежності з build stage
+COPY --from=build /install /usr/local
 
-# Копіюємо проєкт
+# Копіюємо код
 COPY --from=build /app /app
 
-EXPOSE 8080
-
+# Запускаємо застосунок
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]

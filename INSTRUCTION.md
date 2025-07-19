@@ -7,7 +7,7 @@
 ## 🐳 Образи в Docker Hub
 
 - MySQL: [`vitalysemeniv/mysql-local:1.0.0`](https://hub.docker.com/r/vitalysemeniv/mysql-local)
-- Django: [`vitalysemeniv/todoapp:2.0.0`](https://hub.docker.com/r/vitalysemeniv/todoapp)
+- Django: [`vitalysemeniv/todoapp:2.0.2`](https://hub.docker.com/r/vitalysemeniv/todoapp)
 
 ---
 
